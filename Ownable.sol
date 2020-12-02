@@ -8,13 +8,13 @@ pragma solidity >=0.7.0 <0.8.0;
  * @dev Set owner
  */
 contract Ownable {
-    address private owner;
+    address payable owner;
 
     /**
      * @dev Set contract deployer as owner
      */
     constructor() {
-        owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
+        owner = msg.sender;
     }
 
     // modifier to check if caller is owner
