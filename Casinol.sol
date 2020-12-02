@@ -14,5 +14,20 @@ import "./Dead.sol";
      uint houseEdge;
      uint winningNum;
 
+    // event for Winner
      event Won(bool status, uint amount);
+
+    /**
+     * @dev Set the initial state of contract
+     */
+     constructor(uint _minBet, uint _houseEdge) payable{
+         require(_minBet > 0);
+         require(_houseEdge <= 100);
+         minBet = _minBet;
+         houseEdge = _houseEdge;
+     }
+
+     function() public {
+         revert();
+     }
  }
