@@ -10,4 +10,10 @@ import "./Ownable.sol";
  */
 contract Dead is Ownable{
 
+    /**
+     * @dev Set selfdestruct contract, only owner
+     */
+    function kill() public Owned{
+        selfdestruct(owner);
+    }
 }
