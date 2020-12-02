@@ -7,7 +7,7 @@ import "./Dead.sol";
 
 /**
  * @title Casino
- * @dev Set the bets and the house edge
+ * @dev Set the bet and the house edge
  */
  contract Casino is Dead{
      uint minBet;
@@ -35,7 +35,7 @@ import "./Dead.sol";
      }
 
     /**
-     * @dev Trigger the event when user wons
+     * @dev Trigger the event when user wins
      * @param num Number to bet
      */
      function bet(uint num) payable public{
