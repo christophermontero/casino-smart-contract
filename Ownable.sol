@@ -8,7 +8,7 @@ pragma solidity >=0.4.22;
  * @dev Set owner
  */
 contract Ownable {
-    address payable owner;
+    address owner;
 
     /**
      * @dev Set contract deployer as owner
