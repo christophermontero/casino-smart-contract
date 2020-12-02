@@ -13,4 +13,6 @@ import "./Dead.sol";
      uint minBet;
      uint houseEdge;
      uint winningNum;
+
+     event Won(bool status, uint amount);
  }
