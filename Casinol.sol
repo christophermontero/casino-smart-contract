@@ -30,7 +30,7 @@ import "./Dead.sol";
          houseEdge = _houseEdge;
      }
 
-     fallback() external {
+     function() external {
          revert();
      }
 
@@ -41,8 +41,7 @@ import "./Dead.sol";
      function bet(uint num) payable public{
          require(num > 0 && num <= 10);
          require(msg.value >= minBet);
-         bytes memory bytes2Hashed = toBytes(block.timestamp + block.difficulty);
-         winningNum = uint(keccak256(bytes2Hashed));
+         winningNum = (uint256(keccak256(block.timestamp, block.difficulty)) % 5) + 1;
          if (num == winningNum) {
              amountWon = msg.value * (100 - houseEdge)/10;
              if(!msg.sender.send(amountWon)) revert();
@@ -50,11 +49,6 @@ import "./Dead.sol";
          } else {
              emit Won(false, 0);
          }
-     }
-
-     function toBytes(uint256 x) public pure returns(bytes memory b) {
-        b = new bytes(32);
-        assembly { mstore(add(b, 32), x) }
      }
 
     /**
