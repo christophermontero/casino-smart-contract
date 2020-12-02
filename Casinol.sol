@@ -30,7 +30,7 @@ import "./Dead.sol";
          houseEdge = _houseEdge;
      }
 
-     fallback() public {
+     fallback() external {
          revert();
      }
 
@@ -41,13 +41,26 @@ import "./Dead.sol";
      function bet(uint num) payable public{
          require(num > 0 && num <= 10);
          require(msg.value >= minBet);
-         winningNum = (uint256(keccak256(block.timestamp, block.difficulty) % 3) + 1;
+         bytes memory bytes2Hashed = toBytes(block.timestamp + block.difficulty);
+         winningNum = uint(keccak256(bytes2Hashed));
          if (num == winningNum) {
-             uint amountWon = msg.value * (100 - houseEdge)/10;
+             amountWon = msg.value * (100 - houseEdge)/10;
              if(!msg.sender.send(amountWon)) revert();
              emit Won(true, amountWon);
          } else {
              emit Won(false, 0);
          }
+     }
+
+     function toBytes(uint256 x) public pure returns(bytes memory b) {
+        b = new bytes(32);
+        assembly { mstore(add(b, 32), x) }
+     }
+
+    /**
+     * @dev View Casino balance
+     */
+     function checkBalance() Owned public view returns(uint){
+         return address(this).balance / 1e18; // balance in ETH
      }
  }
