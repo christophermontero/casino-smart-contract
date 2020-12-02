@@ -30,7 +30,7 @@ import "./Dead.sol";
          houseEdge = _houseEdge;
      }
 
-     fallback() external {
+     function() public {
          revert();
      }
 
