@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity ^0.4.21;
+pragma solidity >=0.7.0 <0.8.0;
 
 
 /**
@@ -13,8 +13,8 @@ contract Ownable {
     /**
      * @dev Set contract deployer as owner
      */
-    function Ownable() public {
-        owner = msg.sender;
+    constructor() {
+        owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
     }
 
     // modifier to check if caller is owner
