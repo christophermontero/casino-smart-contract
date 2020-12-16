@@ -39,7 +39,7 @@ import "./Dead.sol";
      * @param num Number to bet
      */
      function bet(uint num) payable public{
-         require(num > 0 && num <= 10);
+         require(num > 0 && num <= 5);
          require(msg.value >= minBet);
          winningNum = (uint256(keccak256(block.timestamp, block.difficulty)) % 5) + 1;
          if (num == winningNum) {
