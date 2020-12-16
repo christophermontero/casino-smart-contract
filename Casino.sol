@@ -57,4 +57,11 @@ import "./Dead.sol";
      function checkBalance() Owned public view returns(uint){
          return address(this).balance / 1e18; // balance in ETH
      }
+
+    /**
+     * @dev View winning number
+     */
+     function checkWinNumber() Owned public view returns(uint){
+         return winningNum;
+     }
  }
